@@ -1,0 +1,55 @@
+{
+  "name": "package-checker-cli",
+  "version": "0.3.0",
+  "description": "CLI tool for intelligent dependency analysis and management",
+  "main": "./dist/cli.js",
+  "bin": {
+    "checker": "./dist/cli.js"
+  },
+  "files": [
+    "dist/cli.js",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "keywords": [
+    "cli",
+    "dependency-management",
+    "package-analyzer",
+    "npm",
+    "yarn",
+    "pnpm",
+    "dependencies",
+    "security-audit",
+    "ai-analysis"
+  ],
+  "author": "King Jethro",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kingjethro/package-checker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kingjethro/package-checker/issues"
+  },
+  "homepage": "https://github.com/kingjethro/package-checker#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "build": "node esbuild.js --cli --production",
+    "dev": "node esbuild.js --cli --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "fs-extra": "^11.3.0",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/glob": "^8.1.0",
+    "@types/node": "20.x",
+    "esbuild": "^0.25.3",
+    "typescript": "^5.8.3"
+  }
+} 

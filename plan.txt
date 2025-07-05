@@ -1,0 +1,21 @@
+Develop a VS Code extension called “Package Checker” that serves as a hybrid tool combining both a command-line style interface and a fully integrated visual interface inside VS Code.
+
+The extension should scan the current workspace for all project files (including .js, .ts, .php, etc.) and detect all import, require, or use statements. It should then parse and compare these detected modules against the declared dependencies in standard package management files such as package.json, composer.json, or other relevant package descriptor files. After comparison, it must identify three categories: 1) missing dependencies not declared at all, 2) declared dependencies that are not currently installed, and 3) unused dependencies that are declared but not referenced in any file.
+
+Build two access points to this functionality:
+
+1. A Command Palette Entry (Package Checker: Run): This should allow users to trigger the check via the VS Code command palette or bind it to a hotkey. Once triggered, it should display the result in a VS Code-integrated terminal or output pane, suggesting the appropriate commands such as npm install <module>, npm uninstall <module>, or simply npm install for bulk installation. This is the minimal CLI-style access.
+
+2. A Fully Interactive Sidebar Panel / Webview Interface: This visual interface should contain a list of modules under categorized sections: “Missing Dependencies”, “Not Installed”, and “Unused”. Each item should include an explanation and a corresponding button like [Install], [Uninstall], or [Fix], which when clicked will run the correct command in the integrated VS Code terminal using child_process. Add a [Rescan] button at the top and an [Auto Fix All] to perform fixes in bulk. Optionally, allow hovering over imports in source files to trigger lightbulb-style quick fixes (code actions) with suggestions like “Install this package” or “Remove from package.json”.
+
+Additionally, the extension should support a checker check command from the integrated terminal (or npx checker check globally if exported), which performs the same checks and prints results in a structured CLI format suitable for use in CI pipelines or by power users.
+
+The goal is to provide an intelligent development experience that merges developer efficiency with powerful automation—supporting both beginner-friendly interaction through UI and advanced developer workflows via the terminal, in a single cohesive extension.
+
+Next Steps:
+1. Scaffold a new VS Code extension project.
+2. Implement the core scanning and analysis logic.
+3. Add the Command Palette command.
+4. Build the sidebar/webview UI.
+5. Add CLI integration.
+

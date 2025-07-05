@@ -1,0 +1,80 @@
+{
+  "name": "package-checker-cli",
+  "displayName": "Package Checker CLI",
+  "description": "AI-powered CLI tool for intelligent dependency analysis and code assistance",
+  "version": "0.4.0",
+  "bin": {
+    "checker": "./dist/cli.js"
+  },
+  "main": "./dist/cli.js",
+  "files": [
+    "dist/cli.js",
+    "README.md",
+    "CHANGELOG.md",
+    "pkg-checker.png"
+  ],
+  "keywords": [
+    "cli",
+    "dependency-management",
+    "package-analyzer",
+    "npm",
+    "yarn",
+    "pnpm",
+    "ai-analysis",
+    "javascript",
+    "python",
+    "typescript",
+    "php",
+    "code-completion",
+    "ai",
+    "gemini",
+    "nodejs",
+    "node",
+    "code-assistance",
+    "file-operations",
+    "automation"
+  ],
+  "scripts": {
+    "build": "npm run check-types && npm run lint && node esbuild.js --production",
+    "dev": "node esbuild.js --watch",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "echo \"No tests specified\"",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "fs-extra": "^11.3.0",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/glob": "^8.1.0",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3"
+  },
+  "publisher": "KingJethro",
+  "author": {
+    "name": "King Jethro",
+    "url": "https://github.com/kingjethro999"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kingjethro/package-checker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kingjethro/package-checker/issues"
+  },
+  "homepage": "https://github.com/kingjethro/package-checker#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

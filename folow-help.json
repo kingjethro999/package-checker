@@ -1,0 +1,362 @@
+{
+    "capabilities": {
+        "virtualWorkspaces": true,
+        "untrustedWorkspaces": {
+            "supported": true
+        }
+    },
+    "contributes": {
+        "submenus": [
+            {
+                "id": "tabnine.chat.submenu",
+                "label": "Tabnine"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "tabnine",
+                    "title": "Tabnine AI",
+                    "icon": "icons/small_logo.png"
+                }
+            ]
+        },
+        "viewsWelcome": [
+            {
+                "view": "tabnine.loading",
+                "contents": "Loading please wait..."
+            }
+        ],
+        "views": {
+            "tabnine": [
+                {
+                    "type": "webview",
+                    "id": "tabnine.chat",
+                    "name": "Chat",
+                    "when": "tabnine.chat.webview == 'chat'"
+                },
+                {
+                    "id": "tabnine.chat.authenticate",
+                    "type": "webview",
+                    "name": "Please log in",
+                    "when": "tabnine.chat.webview == 'authnetication_required'"
+                },
+                {
+                    "id": "tabnine.chat.not_part_of_a_team",
+                    "type": "webview",
+                    "name": "Please join a team",
+                    "when": "tabnine.chat.webview == 'part_of_a_team_required'"
+                },
+                {
+                    "id": "tabnine.loading",
+                    "name": "Loading",
+                    "when": "tabnine.chat.webview == 'loading'"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "tabnine.diff.reject",
+                "title": "Discard Changes",
+                "icon": {
+                    "light": "icons/reject-icon.svg",
+                    "dark": "icons/reject-icon.svg"
+                }
+            },
+            {
+                "command": "tabnine.diff.accept",
+                "title": "Accept Changes",
+                "icon": {
+                    "light": "icons/accept-icon.svg",
+                    "dark": "icons/accept-icon.svg"
+                }
+            },
+            {
+                "command": "tabnine.chat.commands.explain-code",
+                "title": "Explain this code",
+                "category": "command"
+            },
+            {
+                "command": "tabnine.chat.commands.generate-tests",
+                "title": "Generate tests",
+                "category": "command"
+            },
+            {
+                "command": "tabnine.chat.commands.document-code",
+                "title": "Document this code",
+                "category": "command"
+            },
+            {
+                "command": "tabnine.chat.commands.fix-code",
+                "title": "Fix this code",
+                "category": "command"
+            },
+            {
+                "command": "tabnine.chat.submit-message",
+                "title": "Submit message",
+                "when": "tabnine.chat.eval && tabnine.chat.ready"
+            },
+            {
+                "command": "tabnine.chat.state",
+                "title": "Chat global state",
+                "when": "tabnine.chat.eval && tabnine.chat.ready"
+            },
+            {
+                "command": "tabnine.chat.clear-all-conversations",
+                "title": "Clear all tabnine chat conversations",
+                "when": "tabnine.chat.eval && tabnine.chat.ready"
+            },
+            {
+                "command": "TabNine::config",
+                "title": "Tabnine: Open Settings"
+            },
+            {
+                "command": "TabNine::configExternal",
+                "title": "Tabnine: Open Settings in external viewer"
+            },
+            {
+                "command": "TabNine::assistantClearCache",
+                "title": "Tabnine: Clear Assistant Cache"
+            },
+            {
+                "command": "TabNine::assistantSetThreshold",
+                "title": "Tabnine: Set Assistant Threshold"
+            },
+            {
+                "command": "TabNine::assistantToggle",
+                "title": "Tabnine: Toggle Assistant"
+            },
+            {
+                "command": "Tabnine.hideSuggestion",
+                "title": "Hide",
+                "icon": {
+                    "dark": "assets/close_inverse.svg",
+                    "light": "assets/close.svg"
+                }
+            },
+            {
+                "command": "Tabnine.applySuggestion",
+                "title": "Apply",
+                "icon": {
+                    "dark": "assets/approve_inverse.svg",
+                    "light": "assets/approve.svg"
+                }
+            },
+            {
+                "command": "tabnine.logs",
+                "title": "Tabnine: Open Logs"
+            },
+            {
+                "command": "tabnine.recent-suggestions",
+                "title": "Tabnine: Recent suggestions"
+            },
+            {
+                "command": "tabnine.signInUsingAuthToken",
+                "title": "Tabnine: Sign in using auth token"
+            },
+            {
+                "command": "tabnine.chat.toggle-focus",
+                "title": "Focus chat input"
+            },
+            {
+                "command": "tabnine.instruct",
+                "title": "Edit with Tabnine"
+            }
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "command": "tabnine.diff.accept",
+                    "group": "navigation",
+                    "when": "resourceScheme == tabnine-diff-view"
+                },
+                {
+                    "command": "tabnine.diff.reject",
+                    "group": "navigation",
+                    "when": "resourceScheme == tabnine-diff-view"
+                }
+            ],
+            "editor/context": [
+                {
+                    "submenu": "tabnine.chat.submenu",
+                    "group": "0__Tabnine",
+                    "when": "tabnine.chat.ready"
+                }
+            ],
+            "tabnine.chat.submenu": [
+                {
+                    "command": "tabnine.chat.commands.explain-code"
+                },
+                {
+                    "command": "tabnine.chat.commands.generate-tests"
+                },
+                {
+                    "command": "tabnine.chat.commands.document-code"
+                },
+                {
+                    "command": "tabnine.chat.commands.fix-code"
+                },
+                {
+                    "command": "tabnine.instruct"
+                }
+            ],
+            "commandPalette": [
+                {
+                    "command": "TabNine::assistantClearCache",
+                    "when": "tabnine-assistant:enabled && tabnine-assistant:background"
+                },
+                {
+                    "command": "TabNine::assistantSetThreshold",
+                    "when": "tabnine-assistant:enabled && tabnine-assistant:background"
+                },
+                {
+                    "command": "TabNine::assistantToggle",
+                    "when": "tabnine-assistant:capability"
+                },
+                {
+                    "command": "TabNine::configExternal",
+                    "when": "!tabnine.enterprise"
+                }
+            ],
+            "comments/commentThread/title": [
+                {
+                    "command": "Tabnine.hideSuggestion",
+                    "group": "navigation",
+                    "when": "commentController == tabnine.commentController"
+                },
+                {
+                    "command": "Tabnine.applySuggestion",
+                    "group": "navigation",
+                    "when": "commentController == tabnine.commentController"
+                }
+            ]
+        },
+        "configuration": [
+            {
+                "title": "Tabnine",
+                "properties": {
+                    "tabnine.disableLineRegex": {
+                        "type": "array",
+                        "default": [],
+                        "description": "Disable Tabnine when the current line contains a match of any of the provided regexes. For example, add \"require\" to disable Tabnine when the current line contains the word 'require'."
+                    },
+                    "tabnine.disableFileRegex": {
+                        "type": "array",
+                        "default": [],
+                        "description": "Disable Tabnine when the file path contains a match of any of the provided regexes. For example, add \"[.]js$\" to disable Tabnine in JavaScript files."
+                    },
+                    "tabnine.experimentalAutoImports": {
+                        "type": [
+                            "boolean",
+                            null,
+                            "number"
+                        ],
+                        "default": null,
+                        "description": "Experimental: Enable modules auto-import following applying Tabnine suggestions"
+                    },
+                    "tabnine.logFilePath": {
+                        "type": "string",
+                        "description": "Tabnine's log file (Visual Studio Code must be restarted for this setting to take effect)"
+                    },
+                    "tabnine.logLevel": {
+                        "type": "string",
+                        "description": "Tabnine's log level (Visual Studio Code must be restarted for this setting to take effect)"
+                    },
+                    "tabnine.receiveBetaChannelUpdates": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Receive Tabnine VSCode extention beta updates"
+                    },
+                    "tabnine.debounceMilliseconds": {
+                        "type": "number",
+                        "default": 0,
+                        "description": "debounce milliseconds before rendering tabnine suggestion"
+                    },
+                    "tabnine.snoozeDuration": {
+                        "type": "number",
+                        "default": 1,
+                        "description": "Hours to disable inline completions when clicking the snooze button",
+                        "minimum": 1,
+                        "maximum": 24
+                    },
+                    "tabnine.useProxySupport": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Use the proxy support for Tabnine (Visual Studio Code must be restarted for this setting to take effect)"
+                    },
+                    "tabnine.ignoreCertificateErrors": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Ignore SSL certificate errors when calling Tabnine API (restart to take effect)"
+                    },
+                    "tabnine.cloudHost": {
+                        "type": "string",
+                        "default": null,
+                        "description": "The tabnine cloud host to connect to (restart to take effect)",
+                        "when": "tabnine.enterprise"
+                    },
+                    "tabnine.logEngine": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Log Tabnine engine process (Visual Studio Code must be restarted for this setting to take effect)"
+                    },
+                    "tabnine.codeLensEnabled": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Enable/Disable Tabnine code actions (Visual Studio Code must be restarted for this setting to take effect)"
+                    },
+                    "tabnine.completionsLoadingIndicatorEnabled": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Enable/Disable Tabnine completions loading indicator (Visual Studio Code must be restarted for this setting to take effect)"
+                    }
+                }
+            }
+        ],
+        "keybindings": [
+            {
+                "key": "tab",
+                "command": "tabnine.tab-override",
+                "when": "tabnine.tab-override && suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+            },
+            {
+                "key": "tab",
+                "command": "editor.action.inlineSuggest.commit",
+                "when": "tabnine.tab-override && inlineSuggestionVisible && !editorTabMovesFocus"
+            },
+            {
+                "key": "alt+cmd+i",
+                "mac": "alt+cmd+i",
+                "win": "ctrl+alt+i",
+                "linux": "ctrl+alt+i",
+                "command": "tabnine.chat.toggle-focus"
+            },
+            {
+                "command": "tabnine.diff.accept",
+                "args": "keybinding",
+                "key": "alt+a",
+                "when": "resourceScheme == tabnine-diff-view"
+            },
+            {
+                "command": "tabnine.diff.reject",
+                "args": "keybinding",
+                "key": "alt+r",
+                "when": "resourceScheme == tabnine-diff-view"
+            },
+            {
+                "command": "tabnine.chat.commands.refine",
+                "key": "alt+f",
+                "when": "editorTextFocus"
+            },
+            {
+                "key": "ctrl+i",
+                "mac": "cmd+i",
+                "command": "tabnine.instruct",
+                "when": "editorTextFocus",
+                "args": {
+                    "trigger": "keybinding"
+                }
+            }
+        ]
+    }
+}
