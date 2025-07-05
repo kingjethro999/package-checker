@@ -62,7 +62,7 @@ interface FileOperation {
 }
 
 export class AIService {
-  private apiKey: string = 'AIzaSyC8tzrhO0j2Sc4tHGIohNuItHcnWCB_peI';
+  private apiKey: string = 'your_fuckng_api_key_you_cheap_bastard';
   private baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
 
   constructor() {

@@ -35,8 +35,8 @@
     "automation"
   ],
   "scripts": {
-    "build": "npm run check-types && npm run lint && node esbuild.js --production",
-    "dev": "node esbuild.js --watch",
+    "build": "node api.js && npm run check-types && npm run lint && node esbuild.js --production",
+    "dev": "node api.js && node esbuild.js --watch",
     "compile": "npm run check-types && npm run lint && node esbuild.js",
     "watch": "node esbuild.js --watch",
     "package": "npm run check-types && npm run lint && node esbuild.js --production",
